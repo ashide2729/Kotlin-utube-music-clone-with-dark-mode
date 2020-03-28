@@ -1,9 +1,13 @@
 package com.example.myapplication
 
+import android.graphics.Color
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.CompoundButton
+import android.widget.MediaController
 import android.widget.Switch
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
@@ -23,5 +27,8 @@ class MainActivity : AppCompatActivity() {
              delegate.setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES)
          }
      }
+        videoView.setVideoURI(Uri.parse("android.resource://" + packageName + "/raw/" + R.raw.video))
+        videoView.start()
+
     }
 }
