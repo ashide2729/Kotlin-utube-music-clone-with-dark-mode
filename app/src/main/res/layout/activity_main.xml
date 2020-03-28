@@ -11,7 +11,6 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
             android:typeface = "serif"
             app:title="Music Player"
             app:titleMarginStart="10dp"
@@ -36,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
-            android:text="Dark Mode"
+            android:text="Light Mode"
             android:layout_marginTop="5dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
