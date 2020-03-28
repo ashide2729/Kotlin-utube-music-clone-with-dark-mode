@@ -2,6 +2,8 @@ package com.example.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.widget.Toolbar
+import kotlinx.android.synthetic.*
 
 class MainActivity : AppCompatActivity() {
 
