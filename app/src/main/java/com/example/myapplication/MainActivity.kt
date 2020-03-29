@@ -1,21 +1,18 @@
 package com.example.myapplication
 
-import android.graphics.Color
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.CompoundButton
-import android.widget.MediaController
-import android.widget.Switch
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.Toolbar
-import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,8 +24,29 @@ class MainActivity : AppCompatActivity() {
              delegate.setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES)
          }
      }
+        playButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_play, 0, 0, 0)
         videoView.setVideoURI(Uri.parse("android.resource://" + packageName + "/raw/" + R.raw.video))
-        videoView.start()
 
+        playButton.setOnClickListener(View.OnClickListener {
+            if(!videoView.isPlaying){
+                val currentPos = videoView.currentPosition
+                videoStartTime.setText(currentPos.toString())
+                val videoDuration = videoView.duration
+                videoEndTime.setText(videoDuration.toString())
+                seekBar.max = videoDuration
+                seekBar.setProgress(currentPos, true)
+                videoView.start()
+                playButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pause, 0, 0, 0)
+            }else{
+                val currentPos = videoView.currentPosition
+                videoStartTime.setText(currentPos.toString())
+                val videoDuration = videoView.duration
+                videoEndTime.setText(videoDuration.toString())
+                seekBar.max = videoDuration
+                seekBar.setProgress(currentPos, true)
+                videoView.pause()
+                playButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_play, 0, 0, 0)
+            }
+        })
     }
 }
